@@ -2,45 +2,62 @@
 var express = require("express");
 var router = express.Router();
 
+var app =express();
+
+
+app.use(function(req, res, next) {
+ res.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+ res.set('Access-Control-Allow-Credentials', 'true');
+ res.set('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT,DELETE');
+ res.set('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
+
+ res.set('Cache-Control', 'no-cache');
+ next();
+});
+
+var model = require('../model/model.js');
+
 router.get("/", function(req, res) {
   res.sendFile(__dirname + "/public/index.html");
 });
 
-router.get("/", function(req, res) {
-  res.sendFile(__dirname + "/public/index.html");
-});
 
-router.get("/api/saved", function(req, res) {
+router.get("/api/bids/", function(req, res) {
 
-   Article.find({}).sort([
-    ["date", "descending"]
-  	]).limit(8).exec(function(err, doc) {
-   
-    if (err) throw err
+	var cowid = 1;
 
-    else {
-      res.send(doc);
-    }
-
+   	model.selectBids(cowid, function(data) {
+   		console.log("all bids in controller: ", data);
+   		
+	    res.send(data);
+	
   });
 });
 
-router.post("/api/saved", function(req, res, next) {
+router.get("/api/highestBid/", function(req, res) {
+	
+	var cowid = 1;
+  
+    model.selectHighestBid(cowid, function(data){
+
+	    console.log("highest bid in controller: ", data);
+	     // res.send(data);	
+
+    });
+	
+  
+});
+
+router.post("/api/bid", function(req, res, next) {
 
   console.log("BODY: " + req.body.title);
 
-  
-  Article.create({
-    title: req.body.title,
-    date: Date.now(),
-    url: req.body.url,
-    snippet: req.body.snippet,
-    pub_date: req.body.pub_date
-  }, function(err) {
+  model.newBid(cow, bidder, bidAmount, function(err) {
     if (err) throw err;
 
-    else {
-      res.send("Saved Search");
-    }
+      res.redirect("/");
+    
   });
 });
+
+module.exports = router;

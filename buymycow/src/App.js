@@ -31,11 +31,17 @@ class App extends Component {
 
     componentDidMount() {
         // Get the bid history
-        // helpers.getBids().then(function (response) {
-        //     // console.log("response.data",response.data);
+        helpers.getBids()
+        // .then(function (response) {
+
+        //     console.log("response.data",response.data);
+
         //     if (response !== this.state.bidHistory) {
+
         //         this.setState({bidHistory: response.data});
+
         //     }
+
         // }.bind(this));
     }
 

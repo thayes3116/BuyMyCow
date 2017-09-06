@@ -12,13 +12,13 @@ class PastBids extends Component
                 <div className="panel-body text-center">
 
                     {/* Here we use a map function to loop through an array in JSX */}
-                    {this.props.bidHistory.map((search, i) => {
+                    {this.props.bidHistory.map((bids, i) => {
                         return (
                             <div key={i}>
                                 
-                                // <p>{search.bidder}</p>
+                                <p>{bids.bidder}</p>
                                 
-                                // <p>{search.amount}</p>
+                                <p>{bids.amount}</p>
 
                            
                             </div>
