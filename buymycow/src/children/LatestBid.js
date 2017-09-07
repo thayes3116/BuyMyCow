@@ -14,9 +14,9 @@ class LatestBid extends Component{
                     {this.props.latestBid.map((bid, i) => {
                         return (
                             <div key={i}>
-                                // <p>Username of Highest Bidder: {bid.bidder}</p>
+                                <p>Username: {bid.bidder}</p>
                                 
-                                // <p>Latest Bid Amount: {bid.bidamount}</p>
+                                <p>Latest Bid Amount: {bid.bidAmount}</p>
                                 <br />
                             </div>
                             )

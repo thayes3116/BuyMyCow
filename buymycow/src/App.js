@@ -29,7 +29,6 @@ class App extends Component {
         this.setCow = this.setCow.bind(this);
         this.setBidder = this.setBidder.bind(this);
         this.setBidAmount = this.setBidAmount.bind(this);
-       
     }
 
     // The moment the page renders get the bidHistory
@@ -55,8 +54,7 @@ class App extends Component {
    // If the component changes (i.e. if a bid is made )...
 
     componentDidUpdate(prevProps, prevState) {
-        // console.log(prevProps) 
-        console.log(prevState)
+        
         // Run the query for the Search
         if (prevState.bidAmount !== this.state.bidAmount && prevState.bidder !== this.state.bidder) {
 
@@ -68,10 +66,14 @@ class App extends Component {
             helpers.postBid(this.state.currentCow, this.state.bidder, this.state.bidAmount).then(function (data) {
                 
                 if (data) {
-                     // !== this.state.bidHistory
+
+                    
                     console.log(data, "updated list of bids" )
                     console.log(this.state)
-                    // this.setState({bidHistory: data.data});
+                    
+                    this.setState({latestBid:[{bidder: this.state.bidder, bidAmount: this.state.bidAmount}]});
+                    console.log(this.state.latestBid);
+                    
                    helpers.getBids(this.state.currentCow).then(function (response) {
 
                     // console.log("response.data",response.data);
@@ -129,6 +131,7 @@ class App extends Component {
     // This function allows childrens to update the parent.
     setBidder(bidder) {
         this.setState({bidder: bidder});
+            
     }
 
     setCow(currentCow) {
@@ -138,6 +141,8 @@ class App extends Component {
     setBidAmount(bidAmount) {
         this.setState({bidAmount: bidAmount});
     }
+
+
 
 
   render() {
@@ -170,7 +175,7 @@ class App extends Component {
 
                 <div className="col-sm-6">
 
-                    <LatestBid latestBid={this.state.highestBid} currentCow={this.state.currentCow}/>
+                    <LatestBid latestBid={this.state.latestBid} currentCow={this.state.currentCow}/>
 
                 </div>
 
