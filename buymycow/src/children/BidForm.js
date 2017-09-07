@@ -27,11 +27,16 @@ class BidForm extends Component
         event.preventDefault();
     // Gets passed to main
         this.props.setBidder(this.state.bidder);
-        this.props.setBIdAmount(this.state.bidAmount);
+        this.props.setBidAmount(this.state.bidAmount);
+        
+        console.log("bidder", this.state.bidder);
+        console.log("bid amount", this.state.bidAmount);
+        
         
         this.state = {bidder: "", bidAmount: ""};
         console.log("bidder", this.state.bidder);
         console.log("bid amount", this.state.bidAmount);
+       
     }
 
     // Here we describe this component's render method
@@ -44,7 +49,8 @@ class BidForm extends Component
                 <div className="panel-body text-center">
                     <form onSubmit={this.handleSubmit}>
                         <div className="form-group">
-                            {/*Title*/}
+                             
+                            {/*Bidder*/}
                             <h4 className="text-center">
                                 <strong>Your Name</strong>
                             </h4>
@@ -59,14 +65,14 @@ class BidForm extends Component
                                 required
                             />
                             <br />
-                            {/*Start Year*/}
+                            {/*Bid Amount*/}
                             <h4 className="text-center">
                                 <strong>Bid Amount in Dollars</strong>
                             </h4>
                             <input
                                 name="bidAmount"
                                 placeholder="2000"
-                                value={this.state.startYear}
+                                value={this.state.bidAmount}
                                 type="text"
                                 className="form-control text-center"
                                 id="bidAmount"

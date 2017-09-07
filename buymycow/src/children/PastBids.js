@@ -18,7 +18,9 @@ class PastBids extends Component
                                 
                                 <p>{bids.bidder}</p>
                                 
-                                <p>{bids.amount}</p>
+                                <p>{bids.bidamount}</p>
+
+                                <br />
 
                            
                             </div>
