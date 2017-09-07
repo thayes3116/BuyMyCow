@@ -1,9 +1,11 @@
 //Requiring express and router
 var express = require("express");
 var router = express.Router();
+var cors = require('cors')
 
 var app =express();
 
+app.use(cors());
 
 app.use(function(req, res, next) {
  res.set('Access-Control-Allow-Origin', 'http://localhost:3000');
@@ -27,9 +29,10 @@ router.get("/api/bids/", function(req, res) {
 	var cowid = 1;
 
    	model.selectBids(cowid, function(data) {
+   		
    		console.log("all bids in controller: ", data);
    		
-	    res.send(data);
+	res.send(data);
 	
   });
 });
