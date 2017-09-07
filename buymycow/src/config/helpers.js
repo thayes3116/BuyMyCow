@@ -6,13 +6,14 @@ var api_url = process.env.API_URL || 'http://localhost:3001'
 var helper = {
 
 	
-  	getBids: function() {
+  	getBids: function(currentCow) {
+      console.log(currentCow)
   		// console.log(api_url);
-    	return axios.get(api_url + '/api/bids/');
+    	return axios.get(api_url + '/api/bids/',{params:{cowid: currentCow }});
   	},
 
-  	getHighestBid: function() {
-  		return axios.get(api_url + '/api/highestBid/');
+  	getHighestBid: function(currentCow) {
+  		return axios.get(api_url + '/api/highestBid/',{params:{cowid: currentCow}});
   	},
 
   	getCows: function() {
@@ -36,7 +37,6 @@ var helper = {
   			console.log("error", error);
   		});
   	}
-
 }
 
 // We export the API helper

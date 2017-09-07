@@ -5,13 +5,13 @@ var model = {
 	selectBids: function(cow, cb) {
 
 		var querystring = "SELECT * FROM `Bids` LEFT JOIN `Cows` ON `Bids`.`cow_id` = `Cows`.`id` WHERE `Cows`.`id` = '" + cow + "';"
-		console.log(querystring);
+		// console.log(querystring);
 
 		connection.query(querystring, function(err, result){
 			
 			if (err) throw err;
 
-			console.log(result);
+			// console.log(result);
 
 			cb(result);
 		});
@@ -22,13 +22,13 @@ var model = {
 
 		var queryString = "SELECT * FROM `Bids` LEFT JOIN `Cows` ON `Bids`.`cow_id` = `Cows`.`id` WHERE `Cows`.`id` = "+ cow +" ORDER BY `Bids`.`bidamount` DESC LIMIT 1;"
 		
-		console.log(queryString);
+		// console.log(queryString);
 
 		connection.query(queryString, function(err, result){
 			
 			if (err) throw err;
 
-			console.log(result);
+			// console.log(result);
 
 			cb(result);
 		});
@@ -42,7 +42,7 @@ var model = {
 
 			if (err) throw err;
 
-			console.log(result);
+			// console.log(result);
 
 			cb(result);
 		});

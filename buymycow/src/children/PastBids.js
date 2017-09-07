@@ -7,7 +7,7 @@ class PastBids extends Component
         return (
             <div className="panel panel-default">
                 <div className="panel-heading">
-                    <h3 className="panel-title text-center">Past Bids</h3>
+                    <h3 className="panel-title text-center">Past Bids on Cow with ID: {this.props.currentCow}</h3>
                 </div>
                 <div className="panel-body text-center">
 
@@ -20,7 +20,7 @@ class PastBids extends Component
                                 
                                 <p>{bids.bidamount}</p>
 
-                                <br />
+                                <hr />
 
                            
                             </div>

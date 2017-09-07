@@ -41,18 +41,21 @@ class BidForm extends Component
 
     // Here we describe this component's render method
     render() {
+        console.log(this.props)
         return (
             <div className="panel panel-default">
+
                 <div className="panel-heading">
-                    <h3 className="panel-title text-center">Enter Your Name and Bid Here</h3>
+                    <h3 className="panel-title text-center">Enter Your Username and Bid Here for cow with ID: {this.props.currentCow}</h3>
                 </div>
+                
                 <div className="panel-body text-center">
                     <form onSubmit={this.handleSubmit}>
                         <div className="form-group">
                              
                             {/*Bidder*/}
                             <h4 className="text-center">
-                                <strong>Your Name</strong>
+                                <strong>Username</strong>
                             </h4>
                             <input
                                 name="bidder"
