@@ -1,9 +1,13 @@
+//Import React and Compnent
 import React, { Component } from 'react';
 
+//Create new class
 class PastBids extends Component
+
 {
+    // This is the component's render method
 	render() {
-        console.log(this.props, 'this.props');
+        
         return (
             <div className="panel panel-default">
                 <div className="panel-heading">
@@ -11,7 +15,7 @@ class PastBids extends Component
                 </div>
                 <div className="panel-body text-center">
 
-                    {/* Here we use a map function to loop through an array in JSX */}
+                    {/*Here we display all of the past bids for the currently selected cow*/}
                     {this.props.bidHistory.map((bids, i) => {
                         return (
                             <div key={i}>
@@ -32,4 +36,5 @@ class PastBids extends Component
     }
 }
 
+//export conponenet for use by App.js
 export default PastBids;

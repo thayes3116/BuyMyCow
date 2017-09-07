@@ -2,23 +2,22 @@
 var express = require("express");
 var router = express.Router();
 
+//Require our model.js
 var model = require('../model/model.js');
-  var cowid = "";
 
+//Set our root route
 router.get("/", function(req, res) {
 
   res.sendFile(__dirname + "/public/index.html");
 
 });
 
-
+//Route to handle current bid get request
 router.get("/api/bids/", function(req, res) {
     
-    console.log(req.query.cowid, "cowid")
+    // console.log(req.query.cowid, "cowid")
     
    	model.selectBids(req.query.cowid, function(data) {
-   		
-   		// console.log("all bids in controller: ", data);
    		
 	    res.send(data);
 	
@@ -26,6 +25,7 @@ router.get("/api/bids/", function(req, res) {
 
 });
 
+//Route to handle current highest bid get request
 router.get("/api/highestBid/", function(req, res) {
 	   
     model.selectHighestBid(req.query.cowid, function(data){
@@ -34,11 +34,10 @@ router.get("/api/highestBid/", function(req, res) {
   	   
       res.send(data);	
 
-    });
-	
-  
+    }); 
 });
 
+//Route to handle current cows for sale get request
 router.get("/api/cows/", function(req, res) {
    
     model.selectCows(function(data){
@@ -47,11 +46,10 @@ router.get("/api/cows/", function(req, res) {
        
       res.send(data); 
 
-    });
-  
-  
+    });  
 });
 
+//Route to handle new bid post requests
 router.post("/api/postBid", function(req, res, next) {
 
   console.log("Bidder: " + req.body.bidder + "Bid Amount:" + req.body.bidAmount);
@@ -61,9 +59,9 @@ router.post("/api/postBid", function(req, res, next) {
       // console.log(data)
 
       res.redirect("/");
-      // , {params:{cowid:req.body.cowid}}
     
   });
 });
 
+//export router to use in serever.js
 module.exports = router;

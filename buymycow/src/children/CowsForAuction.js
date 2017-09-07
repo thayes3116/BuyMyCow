@@ -1,5 +1,7 @@
+//Import React and Compnent
 import React, { Component } from 'react';
 
+//Create new class
 class cowsForAuction extends Component
 
 {	 
@@ -16,10 +18,6 @@ class cowsForAuction extends Component
     // This function will respond to the user input
     handleCowChange(event) {
         event.preventDefault();
-
-        // console.log(event.target)
-        // const target2 = event.target;
-        // const name2 = target2.name;
         this.setState({
             currentCow: event.target.value
         });
@@ -30,20 +28,17 @@ class cowsForAuction extends Component
 
         event.preventDefault();
 
-    // Gets passed to main
-        this.props.setCow(this.state.currentCow);
-               
-        // console.log("current cow", this.state.currentCow);
-            
+        // Gets passed to App.js
+        this.props.setCow(this.state.currentCow);            
     }
-	// Here we render the function
+
+
+	// This is the component's render method
     render() {
-
-    	// console.log(this.props, 'this.props');
-
         return (
         <div>
             <div className="panel-body text-center">
+                    {/*List of Cows for auction*/}
                     <h2><strong>Cows to bid on</strong></h2>
                     <br />
                     {this.props.cows.map((cow, i) => {
@@ -68,6 +63,7 @@ class cowsForAuction extends Component
 
                 <div className="panel-body text-center">
 
+                    {/*Form to change cow to bid on*/}
 	                <form onSubmit={this.handleSubmit}>
 
 	                        <div className="form-group">
@@ -90,12 +86,9 @@ class cowsForAuction extends Component
 	                                type="submit">
 	                                Submit
 	                            </button>
-
 	                        </div>
 	                </form>
                  </div>      
-
-
             </div>
             <hr />
         </div>    
@@ -103,4 +96,5 @@ class cowsForAuction extends Component
     }
 }
 
+//export compenent for use by App.js
 export default cowsForAuction;

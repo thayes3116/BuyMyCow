@@ -1,5 +1,10 @@
+//Import React and Compnent
 import React, { Component } from 'react';
+
+//import css file
 import './App.css';
+
+//import all of the children components
 import BidForm from "./children/BidForm";
 import PastBids from "./children/PastBids";
 import HighestBid from "./children/HighestBid";
@@ -9,14 +14,15 @@ import CowsForAuction from "./children/CowsForAuction";
 // Helper for making AJAX requests to our API
 import helpers from "./config/helpers";
 
+//Create new class
 class App extends Component {
   
-
     constructor(props) {
 
-        // This super(props) line lets us access our parents properties as props.
+        //lets us access our parents properties as props.
         super(props);
 
+        //setting the initial state
         this.state = {
             cows: [],
             currentCow: "No Cow Selected",
@@ -26,22 +32,20 @@ class App extends Component {
             highestBid: [],
             latestBid: []
         };
+
+        //binding the methods to this
         this.setCow = this.setCow.bind(this);
         this.setBidder = this.setBidder.bind(this);
         this.setBidAmount = this.setBidAmount.bind(this);
     }
 
     // The moment the page renders get the bidHistory
-
     componentDidMount() {
         
-        // Get the bid history
-        
-
+        // Get the cows for sale
         helpers.getCows().then(function(response){
-
-            console.log(response)
-
+            
+            //don't change unless their is an update
             if (response !== this.state.cows) {
 
                 this.setState({cows: response.data});
@@ -51,11 +55,10 @@ class App extends Component {
 
     }
 
-   // If the component changes (i.e. if a bid is made )...
-
+    // If a bid is submitted
     componentDidUpdate(prevProps, prevState) {
         
-        // Run the query for the Search
+        // Run the query for posting a new bid
         if (prevState.bidAmount !== this.state.bidAmount && prevState.bidder !== this.state.bidder) {
 
             console.log("component this.state", this.state);
@@ -65,20 +68,17 @@ class App extends Component {
 
             helpers.postBid(this.state.currentCow, this.state.bidder, this.state.bidAmount).then(function (data) {
                 
-                if (data) {
-
+                //if the post is successful
+                if (data) {                   
                     
-                    console.log(data, "updated list of bids" )
-                    console.log(this.state)
-                    
+                    //update the latestbid
                     this.setState({latestBid:[{bidder: this.state.bidder, bidAmount: this.state.bidAmount}]});
-                    console.log(this.state.latestBid);
                     
-                   helpers.getBids(this.state.currentCow).then(function (response) {
+                    //get new list of all bids which will include the latest one
+                    helpers.getBids(this.state.currentCow).then(function (response) {
 
-                    // console.log("response.data",response.data);
-
-                        if (response !== this.state.bidHistory) {
+                        //update bidHistory only if it is changed
+                        if (response.data !== this.state.bidHistory) {
 
                         this.setState({bidHistory: response.data});
 
@@ -86,11 +86,11 @@ class App extends Component {
 
                     }.bind(this));
 
+                    //get new highest bid which may include the new one
                     helpers.getHighestBid(this.state.currentCow).then(function (response){
 
-                        // console.log("response.data",response.data);
-
-                        if (response !== this.state.highestBid) {
+                        //update only if the last bid was the highest bid
+                        if (response.data !== this.state.highestBid) {
 
                             this.setState({highestBid: response.data});
                         }
@@ -98,15 +98,14 @@ class App extends Component {
                 }
             }.bind(this));
         }  
+
+        //update selected cow if currentCow is changed
         if(prevState.currentCow !== this.state.currentCow){
-        
-            console.log("changed cow")
 
-             helpers.getBids(this.state.currentCow).then(function (response) {
+            //get bids for new currentCow
+            helpers.getBids(this.state.currentCow).then(function (response) {
 
-            // console.log("response.data",response.data);
-
-                if (response !== this.state.bidHistory) {
+                if (response.data !== this.state.bidHistory) {
 
                     this.setState({bidHistory: response.data});
 
@@ -114,88 +113,85 @@ class App extends Component {
 
             }.bind(this));
 
+            //get highest bid for new currentCow
             helpers.getHighestBid(this.state.currentCow).then(function (response){
 
-                // console.log("response.data",response.data);
-
-                if (response !== this.state.highestBid) {
+                if (response.data !== this.state.highestBid) {
 
                     this.setState({highestBid: response.data});
                 }
             }.bind(this));
-        }  
-        
-        
+        }         
     }
 
-    // This function allows childrens to update the parent.
+    // This function allows childrens to update the bidder.
     setBidder(bidder) {
-        this.setState({bidder: bidder});
-            
+        this.setState({bidder: bidder});            
     }
 
+    // This function allows childrens to update the currentCow.
     setCow(currentCow) {
         this.setState({currentCow: currentCow});       
     }
 
+    // This function allows childrens to update the bidAmount.
     setBidAmount(bidAmount) {
         this.setState({bidAmount: bidAmount});
     }
 
+    // This is the component's render method
+    render() {
 
-
-
-  render() {
-    return (
-        <div className="App">
-
-            <div className="App-header">
-
-                <h2>Welcome to Buy My Cow</h2>
-                <h3>A live livestock auction</h3>
-
-            </div>
-
-
-            <div className="row">
-                
-                <CowsForAuction cows={this.state.cows} setCow={this.setCow} currentCow={this.state.currentCow}/>
+        return (
             
+            <div className="App">
+
+                <div className="App-header">
+
+                    <h2>Welcome to Buy My Cow</h2>
+                    <h3>A live livestock auction</h3>
+
+                </div>
+
+
+                <div className="row">
+                    
+                    <CowsForAuction cows={this.state.cows} setCow={this.setCow} currentCow={this.state.currentCow}/>
+                
+                </div>
+
+
+                <div className="row">
+
+                    <BidForm setBidder={this.setBidder} setBidAmount={this.setBidAmount} currentCow={this.state.currentCow}/>
+
+                </div>
+
+
+                <div className="row">
+
+                    <div className="col-sm-6">
+
+                        <LatestBid latestBid={this.state.latestBid} currentCow={this.state.currentCow}/>
+
+                    </div>
+
+                    <div className="col-sm-6">
+
+                        <HighestBid highestBid={this.state.highestBid} currentCow={this.state.currentCow}/>
+
+                    </div>
+
+                    <div className="col-sm-6">
+
+                        <PastBids bidHistory={this.state.bidHistory} currentCow={this.state.currentCow}/>
+
+                    </div>                         
+                </div>        
             </div>
-
-
-            <div className="row">
-
-                <BidForm setBidder={this.setBidder} setBidAmount={this.setBidAmount} currentCow={this.state.currentCow}/>
-
-            </div>
-
-
-            <div className="row">
-
-                <div className="col-sm-6">
-
-                    <LatestBid latestBid={this.state.latestBid} currentCow={this.state.currentCow}/>
-
-                </div>
-
-                <div className="col-sm-6">
-
-                    <HighestBid highestBid={this.state.highestBid} currentCow={this.state.currentCow}/>
-
-                </div>
-
-                <div className="col-sm-6">
-
-                    <PastBids bidHistory={this.state.bidHistory} currentCow={this.state.currentCow}/>
-
-                </div>
-
-                      
-            </div>        
-        </div>
-    );
-  }
+        );
+    }
 }
 
+//export component for use in index.js
 export default App;

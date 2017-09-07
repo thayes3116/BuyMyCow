@@ -1,4 +1,4 @@
-// Include the axios package for performing HTTP requests (promise based alternative to request)
+// Include the axios package for performing HTTP requests
 var axios = require("axios");
 
 var api_url = process.env.API_URL || 'http://localhost:3001'
@@ -7,10 +7,7 @@ var helper = {
 
 	
   	getBids: function(currentCow) {
-      console.log(currentCow)
-  		// console.log(api_url);
       
-
     	 return axios.get(api_url + '/api/bids/',{params:{cowid: currentCow }});
       
   	},

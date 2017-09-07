@@ -1,16 +1,19 @@
+//Import React and Compnent
 import React, { Component } from 'react';
 
+//Create new class
 class HighestBid extends Component{
 
-	 // Here we render the function
+	// This is the component's render method
     render() {
-    	 // console.log(this.props.highestBid, 'this.props');
+    	 
         return (
             <div className="panel panel-default">
                 <div className="panel-heading">
                     <h3 className="panel-title text-center">Current Highest Bid on Cow with ID: {this.props.currentCow}</h3>
                 </div>
                 <div className="panel-body text-center">
+                    {/*Display the highest bidder and highest bid amount*/}
                     {this.props.highestBid.map((bid, i) => {
                         return (
                             <div key={i}>
@@ -19,14 +22,13 @@ class HighestBid extends Component{
                                 <p>Highest Amount Bid: {bid.bidamount}</p>
                                 <br />
                             </div>
-                            )
+                        )
                     })}
                 </div>    
             </div>
         );
     }
-
-
 }
 
+//export component for use by App.js
 export default HighestBid;

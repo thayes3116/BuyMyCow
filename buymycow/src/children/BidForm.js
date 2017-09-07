@@ -1,5 +1,7 @@
+//Import React and Compnent
 import React, { Component } from 'react';
 
+//Create new class
 class BidForm extends Component
 
 {
@@ -24,24 +26,20 @@ class BidForm extends Component
 
     // When a user submits...
     handleSubmit(event) {
+
         event.preventDefault();
-    // Gets passed to main
+
+        //Pass updated information to App.js
         this.props.setBidder(this.state.bidder);
         this.props.setBidAmount(this.state.bidAmount);
-        
-        console.log("bidder", this.state.bidder);
-        console.log("bid amount", this.state.bidAmount);
-        
-        
-        this.state = {bidder: "", bidAmount: ""};
-        console.log("bidder", this.state.bidder);
-        console.log("bid amount", this.state.bidAmount);
-       
+
+        //Reset bidder and bidAmount   
+        this.state = {bidder: "", bidAmount: ""};     
     }
 
-    // Here we describe this component's render method
+    // This is the component's render method
     render() {
-        console.log(this.props)
+        
         return (
             <div className="panel panel-default">
 
@@ -98,6 +96,5 @@ class BidForm extends Component
     }
 }
 
-// Export the component back for use in other files
-
+//export the component for use in App.js
 export default BidForm;
