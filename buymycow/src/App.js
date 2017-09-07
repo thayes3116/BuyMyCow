@@ -48,6 +48,28 @@ class App extends Component {
             }
 
         }.bind(this));
+
+        // helpers.getBids(this.state.currentCow).then(function (response) {
+
+        //      console.log("response.data",response.data);
+
+        //         if (response !== this.state.bidHistory) {
+
+        //             this.setState({bidHistory: response.data});
+
+        //         }
+
+        //     }.bind(this));
+
+        //     helpers.getHighestBid(this.state.currentCow).then(function (response){
+
+        //          console.log("response.data",response.data);
+
+        //         if (response !== this.state.highestBid) {
+
+        //             this.setState({highestBid: response.data});
+        //         }
+        //     }.bind(this));
     }
 
    // If the component changes (i.e. if a bid is made )...
@@ -63,14 +85,34 @@ class App extends Component {
             // Clears the bidHistory array if there is a new bid
             this.setState({bidHistory: []});
 
-            helpers.postBid(this.state.bidder, this.state.bidAmount).then(function (data) {
+            helpers.postBid(this.state.currentCow, this.state.bidder, this.state.bidAmount).then(function (data) {
                 
-                if (data !== this.state.bidHistory) {
+                if (data) {
+                     // !== this.state.bidHistory
+                    console.log(data, "updated list of bids" )
+                    console.log(this.state)
+                    // this.setState({bidHistory: data.data});
+                   helpers.getBids(this.state.currentCow).then(function (response) {
 
-                    console.log(data.data, "updated list of bids" )
+                    // console.log("response.data",response.data);
 
-                    this.setState({bidHistory: data.data});
-                   
+                        if (response !== this.state.bidHistory) {
+
+                        this.setState({bidHistory: response.data});
+
+                        }
+
+                    }.bind(this));
+
+                    helpers.getHighestBid(this.state.currentCow).then(function (response){
+
+                        // console.log("response.data",response.data);
+
+                        if (response !== this.state.highestBid) {
+
+                            this.setState({highestBid: response.data});
+                        }
+                    }.bind(this));
                 }
             }.bind(this));
         }  
@@ -82,23 +124,23 @@ class App extends Component {
 
             // console.log("response.data",response.data);
 
-            if (response !== this.state.bidHistory) {
+                if (response !== this.state.bidHistory) {
 
-                this.setState({bidHistory: response.data});
+                    this.setState({bidHistory: response.data});
 
-            }
+                }
 
-        }.bind(this));
+            }.bind(this));
 
-        helpers.getHighestBid(this.state.currentCow).then(function (response){
+            helpers.getHighestBid(this.state.currentCow).then(function (response){
 
-            // console.log("response.data",response.data);
+                // console.log("response.data",response.data);
 
-            if (response !== this.state.highestBid) {
+                if (response !== this.state.highestBid) {
 
-                this.setState({highestBid: response.data});
-            }
-        }.bind(this));
+                    this.setState({highestBid: response.data});
+                }
+            }.bind(this));
         }  
         
         

@@ -83,7 +83,7 @@ class BidForm extends Component
                                 required
                             />
                             <br />
-
+                            <br />
                             <button
                                 className="btn btn-primary"
                                 type="submit"

@@ -33,13 +33,13 @@ class cowsForAuction extends Component
     // Gets passed to main
         this.props.setCow(this.state.currentCow);
                
-        console.log("current cow", this.state.currentCow);
+        // console.log("current cow", this.state.currentCow);
             
     }
 	// Here we render the function
     render() {
 
-    	console.log(this.props, 'this.props');
+    	// console.log(this.props, 'this.props');
 
         return (
         <div>
@@ -83,6 +83,7 @@ class cowsForAuction extends Component
 	                                required
 	                        	/>  
 	                            <br />
+                                <br />
 
 	                            <button
 	                                className="btn btn-primary"
@@ -96,6 +97,7 @@ class cowsForAuction extends Component
 
 
             </div>
+            <hr />
         </div>    
         );
     }

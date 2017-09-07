@@ -9,28 +9,35 @@ var helper = {
   	getBids: function(currentCow) {
       console.log(currentCow)
   		// console.log(api_url);
-    	return axios.get(api_url + '/api/bids/',{params:{cowid: currentCow }});
+      
+
+    	 return axios.get(api_url + '/api/bids/',{params:{cowid: currentCow }});
+      
   	},
 
   	getHighestBid: function(currentCow) {
-  		return axios.get(api_url + '/api/highestBid/',{params:{cowid: currentCow}});
-  	},
+
+      
+  		  return axios.get(api_url + '/api/highestBid/',{params:{cowid: currentCow}});
+  	 
+    },
 
   	getCows: function() {
   		return axios.get(api_url + '/api/cows/');
   	},
 
-  	postBid: function(bidder, bidAmount){
+  	postBid: function(currentCow, bidder, bidAmount){
   		return axios.post(api_url + '/api/postBid/',
-  			{bidder: bidder,
-  				bidAmount: bidAmount
+  			{
+           bidder: bidder,
+  			   bidAmount: bidAmount,
+           cowid: currentCow
   			}
   		).then(function(response){
 
-  			console.log(response);
-
-  			if(response){
-  				return response;
+  			// console.log(response);
+        if (response){
+         return response
   			}
 
   		}).catch(function(error){

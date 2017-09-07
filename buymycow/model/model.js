@@ -5,7 +5,7 @@ var model = {
 	selectBids: function(cow, cb) {
 
 		var querystring = "SELECT * FROM `Bids` LEFT JOIN `Cows` ON `Bids`.`cow_id` = `Cows`.`id` WHERE `Cows`.`id` = '" + cow + "';"
-		// console.log(querystring);
+		 console.log(querystring);
 
 		connection.query(querystring, function(err, result){
 			
@@ -58,7 +58,7 @@ var model = {
 
 			if (err) throw err;
 
-			console.log(result);
+			// console.log(result);
 
 			cb(result);
 		})

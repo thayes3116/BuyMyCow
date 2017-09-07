@@ -3,7 +3,7 @@ var express = require("express");
 var router = express.Router();
 
 var model = require('../model/model.js');
-  var cowid = 1;
+  var cowid = "";
 
 router.get("/", function(req, res) {
 
@@ -13,9 +13,10 @@ router.get("/", function(req, res) {
 
 
 router.get("/api/bids/", function(req, res) {
-    console.log(req.params.cowid, "cowid")
-
-   	model.selectBids(cowid, function(data) {
+    
+    console.log(req.query.cowid, "cowid")
+    
+   	model.selectBids(req.query.cowid, function(data) {
    		
    		// console.log("all bids in controller: ", data);
    		
@@ -26,8 +27,8 @@ router.get("/api/bids/", function(req, res) {
 });
 
 router.get("/api/highestBid/", function(req, res) {
-	 
-    model.selectHighestBid(cowid, function(data){
+	   
+    model.selectHighestBid(req.query.cowid, function(data){
 
   	  // console.log("highest bid in controller: ", data);
   	   
@@ -55,11 +56,12 @@ router.post("/api/postBid", function(req, res, next) {
 
   console.log("Bidder: " + req.body.bidder + "Bid Amount:" + req.body.bidAmount);
 
-  model.newBid(cowid, req.body.bidder, req.body.bidAmount, function(data) {
+  model.newBid(req.body.cowid, req.body.bidder, req.body.bidAmount, function(data) {
 
-      console.log(data)
+      // console.log(data)
 
-      res.redirect("/api/bids/");
+      res.redirect("/");
+      // , {params:{cowid:req.body.cowid}}
     
   });
 });

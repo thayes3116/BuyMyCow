@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class PastBids extends Component
 {
 	render() {
-        // console.log(this.props, 'this.props');
+        console.log(this.props, 'this.props');
         return (
             <div className="panel panel-default">
                 <div className="panel-heading">
@@ -16,9 +16,9 @@ class PastBids extends Component
                         return (
                             <div key={i}>
                                 
-                                <p>{bids.bidder}</p>
+                                <p>Username of Bidder: {bids.bidder}</p>
                                 
-                                <p>{bids.bidamount}</p>
+                                <p>Amount Bid: {bids.bidamount}</p>
 
                                 <hr />
 
