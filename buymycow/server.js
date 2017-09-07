@@ -1,3 +1,4 @@
+//require npm express, bidy parser, morgan, and cors
 var express = require("express");
 var bodyParser = require("body-parser");
 var logger = require("morgan");
@@ -7,21 +8,16 @@ var cors = require('cors')
 // Initialize Express
 var app = express();
 
+//to assist with server to server communication
 app.use(cors());
 
-app.use(function(req, res, next) {
- res.set('Access-Control-Allow-Origin', 'http://localhost:3000');
- res.set('Access-Control-Allow-Credentials', 'true');
- res.set('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT,DELETE');
- res.set('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
-
- res.set('Cache-Control', 'no-cache');
- next();
-});
-
-
+//set up express static
 app.use(express.static("public"));
+
+//use morgan for logging
 app.use(logger("dev"));
+
+//set up body parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
@@ -32,7 +28,7 @@ var routes = require("./controller/controller.js");
 app.use("/", routes);
 
 
-// Listen on port 3000
+// Listen on port 3001
 app.listen(process.env.PORT || 3001, function() {
   console.log("App running on port 3001!");
 });

@@ -25,7 +25,6 @@ class PastBids extends Component
                                 <p>Amount Bid: {bids.bidamount}</p>
 
                                 <hr />
-
                            
                             </div>
                         );

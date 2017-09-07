@@ -68,7 +68,7 @@ var model = {
 
 			cb(result);
 		});
-	};
+	}
 };
 
 //export model to use in controller.js
