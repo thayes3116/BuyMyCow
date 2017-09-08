@@ -35,63 +35,85 @@ class cowsForAuction extends Component
 
 	// This is the component's render method
     render() {
+
         return (
-        <div>
-            <div className="panel-body text-center">
-                    {/*List of Cows for auction*/}
-                    <h2><strong>Cows to bid on</strong></h2>
-                    <br />
-                    {this.props.cows.map((cow, i) => {
-                        return (
-                            <div key={i}>
-                                <p>Cow ID: {cow.id}</p>
-                                
-                                <p>Cow Name: {cow.cow}</p>
-                                <hr />
+
+            <div className="text-center">
+
+                <div className="row text-center">
+
+                        <div className="panel panel-default text-center">
+
+                            <div className="panel-heading text-center">
+
+                                <h2 className="panel-title text-center"><strong>Cows to bid on</strong></h2>
+
                             </div>
-                        )    
-                    })} 
-                           
-            </div> 
-            <div className="panel panel-default">
+                                
+                            <div className="panel-body text-center">
 
-                <div className="panel-heading">
+                                    {/*List of Cows for auction*/}
+                                    
+                                    <br />
+                                    {this.props.cows.map((cow, i) => {
+                                        return (
+                                            <div key={i}>
+                                                <p>Cow ID: {cow.id}</p>
+                                                
+                                                <p>Cow Name: {cow.cow}</p>
+                                                <hr />
+                                            </div>
+                                        )    
+                                    })} 
+                                           
+                            </div> 
 
-                    <h3 className="panel-title text-center">Enter an ID of a cow to bid on</h3>
-                    
+                        </div>    
                 </div>
 
-                <div className="panel-body text-center">
+                <div className="row text-center">
 
-                    {/*Form to change cow to bid on*/}
-	                <form onSubmit={this.handleSubmit}>
+                        <div className="panel panel-default text-center">
 
-	                        <div className="form-group">
+                            <div className="panel-heading text-center">
 
-	                			<input
-	                                name="cowToBidOn"
-	                                placeholder="1"
-	                                value={this.state.currentCow}
-	                                type="text"
-	                                className="form-control text-center"
-	                                id="cowToBidOn"
-	                                onChange={this.handleCowChange}
-	                                required
-	                        	/>  
-	                            <br />
-                                <br />
+                                <h3 className="panel-title text-center">Enter an ID of a cow to bid on</h3>
+                                
+                            </div>
 
-	                            <button
-	                                className="btn btn-primary"
-	                                type="submit">
-	                                Submit
-	                            </button>
-	                        </div>
-	                </form>
-                 </div>      
-            </div>
-            <hr />
-        </div>    
+
+                            <div className="panel-body text-center">
+
+                                {/*Form to change cow to bid on*/}
+            	                <form onSubmit={this.handleSubmit}>
+
+            	                        <div className="form-group">
+
+            	                			<input
+            	                                name="cowToBidOn"
+            	                                placeholder="1"
+            	                                value={this.state.currentCow}
+            	                                type="text"
+            	                                className="form-control text-center"
+            	                                id="cowToBidOn"
+            	                                onChange={this.handleCowChange}
+            	                                required
+            	                        	/>  
+            	                            <br />
+                                            <br />
+
+            	                            <button
+            	                                className="btn btn-primary"
+            	                                type="submit">
+            	                                Submit
+            	                            </button>
+            	                        </div>
+            	                </form>
+                             </div>      
+                        </div>
+                    <hr />
+                </div>   
+            </div> 
         );
     }
 }

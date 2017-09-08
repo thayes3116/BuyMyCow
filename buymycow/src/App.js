@@ -144,9 +144,9 @@ class App extends Component {
 
         return (
             
-            <div className="App">
+            <div className="App container">
 
-                <div className="App-header">
+                <div className="App-header row">
 
                     <h2>Welcome to Buy My Cow</h2>
                     <h3>A live livestock auction</h3>
@@ -155,9 +155,9 @@ class App extends Component {
 
 
                 <div className="row">
-                    
-                    <CowsForAuction cows={this.state.cows} setCow={this.setCow} currentCow={this.state.currentCow}/>
-                
+                    <div className="col-sm-12">
+                        <CowsForAuction cows={this.state.cows} setCow={this.setCow} currentCow={this.state.currentCow}/>
+                    </div>
                 </div>
 
 
@@ -170,12 +170,14 @@ class App extends Component {
 
                 <div className="row">
 
-                    <div className="col-sm-6">
-
                         <LatestBid latestBid={this.state.latestBid} currentCow={this.state.currentCow}/>
 
-                    </div>
+                </div>
 
+
+                <div className="row">
+
+                
                     <div className="col-sm-6">
 
                         <HighestBid highestBid={this.state.highestBid} currentCow={this.state.currentCow}/>

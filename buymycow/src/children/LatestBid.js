@@ -8,8 +8,8 @@ class LatestBid extends Component{
     render() {
     	
         return (
-            <div className="panel panel-default">
-                <div className="panel-heading">
+            <div className="panel panel-default text-center">
+                <div className="panel-heading text-center">
                     <h3 className="panel-title text-center">Your Latest Bid</h3>
                 </div>
                 <div className="panel-body text-center">
