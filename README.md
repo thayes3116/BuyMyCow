@@ -35,4 +35,4 @@ The basic idea of this coding challenge is to create a website using React.js wh
 * Need to coding in a time to end auctinos of certain cows and infrom the winner/seller.
 * Need to add a way for number of livestock to be bit on to increase. Add pictures of livestock.
 * Add a logging in process using passport of an o-auth.
-* Eventually, add pyment processing.
+* Eventually, add payment processing.
