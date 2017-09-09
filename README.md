@@ -27,7 +27,7 @@ A full stack website using React, Node, Express, and MySQL
 
 ### Basic Idea:
 
-The basic idea of this coding challenge is to create a website using React.js where the user can place bids on livestock.  The bid amount a user name is saved to the database.  Independently, the user can choose which livestock to look at.  When a cow is selected by id, the current highest bid/username of bidder and the bid history on that cpow is displayed.  Th current user can choose to bid on the current cow after the cow is choosen. Also, displayed for the user is his/her latest.
+The basic idea of this coding challenge is to create a website using React.js where the user can place bids on livestock.  The bid amount a user name is saved to the database.  Independently, the user can choose which livestock to look at.  When a cow is selected by id, the current highest bid/username of bidder and the bid history on that cow is displayed.  Th current user can choose to bid on the current cow after the cow is choosen. Also, displayed for the user is his/her latest bid.
 
 ### Future Developments:
 
