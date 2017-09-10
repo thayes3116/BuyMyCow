@@ -10,6 +10,7 @@ import PastBids from "./children/PastBids";
 import HighestBid from "./children/HighestBid";
 import LatestBid from "./children/LatestBid";
 import CowsForAuction from "./children/CowsForAuction";
+import CowsForm from "./children/CowsForm";
 
 // Helper for making AJAX requests to our API
 import helpers from "./config/helpers";
@@ -144,22 +145,37 @@ class App extends Component {
 
         return (
             
-            <div className="App container">
+            <div className="App container-fluid">
 
-                <div className="App-header row">
+                <div className="App-header text-center">
 
                     <h2>Welcome to Buy My Cow</h2>
+                    <br />
+                    <br />
                     <h3>A live livestock auction</h3>
 
                 </div>
 
 
-                <div className="row">
+                <div className="row text-center">
+
                     <div className="col-sm-12">
-                        <CowsForAuction cows={this.state.cows} setCow={this.setCow} currentCow={this.state.currentCow}/>
+                
+                        <CowsForAuction cows={this.state.cows} />
+                    
                     </div>
+
                 </div>
 
+                <div className="row text-center">
+
+                    <div className="col-sm-12">
+
+                        <CowsForm setCow={this.setCow} currentCow={this.state.currentCow}/>
+
+                   </div>
+
+                </div>
 
                 <div className="row">
 
