@@ -156,56 +156,30 @@ class App extends Component {
 
                 </div>
 
+                <CowsForAuction cows={this.state.cows} />
+                              
+                <CowsForm setCow={this.setCow} currentCow={this.state.currentCow}/>
 
-                <div className="row text-center">
-
-                    <div className="col-sm-12">
-                
-                        <CowsForAuction cows={this.state.cows} />
-                    
-                    </div>
-
-                </div>
-
-                <div className="row text-center">
-
-                    <div className="col-sm-12">
-
-                        <CowsForm setCow={this.setCow} currentCow={this.state.currentCow}/>
-
-                   </div>
-
-                </div>
+                <BidForm setBidder={this.setBidder} setBidAmount={this.setBidAmount} currentCow={this.state.currentCow}/>
 
                 <div className="row">
 
-                    <BidForm setBidder={this.setBidder} setBidAmount={this.setBidAmount} currentCow={this.state.currentCow}/>
-
-                </div>
-
-
-                <div className="row">
+                    <div className="col-sm-6 text-center">
 
                         <LatestBid latestBid={this.state.latestBid} currentCow={this.state.currentCow}/>
 
-                </div>
-
-
-                <div className="row">
-
-                
-                    <div className="col-sm-6">
+                    </div>
+               
+                    <div className="col-sm-6 text-center">
 
                         <HighestBid highestBid={this.state.highestBid} currentCow={this.state.currentCow}/>
 
                     </div>
 
-                    <div className="col-sm-6">
-
-                        <PastBids bidHistory={this.state.bidHistory} currentCow={this.state.currentCow}/>
-
-                    </div>                         
                 </div>        
+
+                <PastBids bidHistory={this.state.bidHistory} currentCow={this.state.currentCow}/>
+                     
             </div>
         );
     }

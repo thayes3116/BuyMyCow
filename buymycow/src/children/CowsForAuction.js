@@ -3,8 +3,10 @@ import React, { Component } from 'react';
 
 //Create new class
 class CowsForAuction extends Component {
-
+	
+	
 	render() {
+		console.log(this.props)
 		return (
 
                 <div className="row text-center">
@@ -54,5 +56,5 @@ class CowsForAuction extends Component {
 		)
 	}
 }
-//export compenent for use by App.js
+//export component for use by App.js
 export default CowsForAuction;

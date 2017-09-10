@@ -2,9 +2,8 @@
 import React, { Component } from 'react';
 
 //Create new class
-class CowsForm extends Component
+class CowsForm extends Component {
 
-{	 
 	constructor(props){
 
         super(props);
@@ -12,12 +11,15 @@ class CowsForm extends Component
         this.state = {currentCow: ""};
 
         this.handleCowChange = this.handleCowChange.bind(this);
+
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     // This function will respond to the user input
     handleCowChange(event) {
+
         event.preventDefault();
+        
         this.setState({
             currentCow: event.target.value
         });
@@ -78,19 +80,19 @@ class CowsForm extends Component
         	                            </button>
         	                        </div>
         	                </form>
-                         </div>      
+                        </div> 
+                                 
                     </div>
 
                     <div className="col-sm-4">
 
                     </div>
-
-                    <hr />
+                  
                 </div>   
            
         );
     }
 }
 
-//export compenent for use by App.js
+//export component for use by App.js
 export default CowsForm;

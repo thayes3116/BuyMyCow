@@ -41,14 +41,17 @@ class BidForm extends Component
     render() {
         
         return (
-            <div className="panel panel-default">
 
-                <div className="panel-heading">
-                    <h3 className="panel-title text-center">Enter Your Username and Bid Here for cow with ID: {this.props.currentCow}</h3>
-                </div>
-                
-                <div className="panel-body text-center">
+            <div className="row text-center">
+            
+                <div className="col-sm-12">
+            
+                    <h3>Enter Your Username and Bid Here for Cow with ID: {this.props.currentCow}</h3>
+                    
+                    <br />
+
                     <form onSubmit={this.handleSubmit}>
+
                         <div className="form-group">
                              
                             {/*Bidder*/}
@@ -88,9 +91,13 @@ class BidForm extends Component
                             >
                                 Submit
                             </button>
+                            
                         </div>
+
                     </form>
+              
                 </div>
+
             </div>
         );
     }
