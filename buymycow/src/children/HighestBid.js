@@ -9,18 +9,29 @@ class HighestBid extends Component{
     	 
         return (
             <div className="panel panel-default">
+
                 <div className="panel-heading">
+
                     <h3 className="panel-title text-center">Current Highest Bid on Cow with ID: {this.props.currentCow}</h3>
+               
                 </div>
+
                 <div className="panel-body text-center">
+
                     {/*Display the highest bidder and highest bid amount*/}
+
                     {this.props.highestBid.map((bid, i) => {
+
                         return (
+
                             <div key={i}>
+
                                 <p>Username of Highest Bidder: {bid.bidder}</p>
                                 
                                 <p>Highest Amount Bid: {bid.bidamount}</p>
+
                                 <br />
+                                
                             </div>
                         )
                     })}
